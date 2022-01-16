@@ -1,0 +1,92 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}Add A New Cafe{% endblock %}
+{% block styles %}
+    {{super()}}
+    <link rel="stylesheet"
+          href="{{url_for('.static', filename='./css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <!-- This is where your WTForm will go -->
+        <form action="{{url_for('add_cafe')}}" method="post" >
+
+            {{form.csrf_token}}
+       <p>
+          {% include "bootstrap/base.html"%}
+          {{ form.csrf_token }}
+          {{ form.cafe.label }}<br>{{ form.cafe(size=30) }}<br>
+          {%for errors in form.cafe.errors%}
+          <span style="color:red">{{(errors)}}</span>
+          {%endfor%}
+       </p>
+        <p>
+          {% include "bootstrap/base.html"%}
+          {{ form.csrf_token }}
+          {{ form.location_url.label }}<br>{{ form.location_url(size=30) }}<br>
+          {%for errors in form.location_url.errors%}
+          <span style="color:red">{{flash(errors)}}</span>
+          {%endfor%}
+        </p>
+        <p>
+            {% include "bootstrap/base.html"%}
+            {{ form.csrf_token }}
+            {{ form.open_time.label }}<br>{{ form.open_time(size=30) }}<br>
+            {%for errors in form.open_time.errors%}
+            <span style="color:red">{{errors}}</span>
+            {%endfor%}
+        </p>
+        <p>
+            {% include "bootstrap/base.html"%}
+            {{ form.csrf_token }}
+            {{ form.closing_time.label }}<br>{{ form.closing_time(size=30) }}<br>
+            {%for errors in form.closing_time.errors%}
+            <span style="color:red">{{errors}}</span>
+            {%endfor%}
+        </p>
+        <p>
+            {% include "bootstrap/base.html"%}
+            {{ form.csrf_token }}
+            {{ form.coffee_rating.label }}<br>{{ form.coffee_rating() }}<br>
+            {%for errors in form.coffee_rating.errors%}
+            <span style="color:red">{{errors}}</span>
+            {%endfor%}
+        </p>
+        <p>
+            {% include "bootstrap/base.html"%}
+            {{ form.csrf_token }}
+            {{ form.wifi_rating.label }}<br>{{ form.wifi_rating()}}<br>
+            {%for errors in form.wifi_rating.errors%}
+            <span style="color:red">{{errors}}</span>
+            {%endfor%}
+        </p>
+        <p>
+            {% include "bootstrap/base.html"%}
+            {{ form.csrf_token }}
+            {{ form.power_supply.label }}<br>{{ form.power_supply() }}<br>
+            {%for errors in form.power_supply.errors%}
+            <span style="color:red">{{errors}}</span>
+            {%endfor%}
+        </p>
+
+        <p>
+        {% include "bootstrap/base.html"%}
+        {{ form.submit }}
+        </p>
+
+        </form>
+
+	    <p class="space-above"><a href="/cafes">See all cafes</a></p>
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
